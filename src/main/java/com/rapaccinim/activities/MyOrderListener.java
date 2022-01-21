@@ -54,7 +54,7 @@ class MyOrderListener implements RealTimeEventListener {
             Map<String, String> values = (Map<String, String>) event.getFormValues();
 
             // then we get the actual individual values
-            String ticker = values.get("ticker");
+            String ticker = values.get("ticker").replace("$", "");
             int quantity = Integer.parseInt(values.get("quantity"));
             int price = Integer.parseInt(values.get("price"));
 

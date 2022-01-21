@@ -21,7 +21,7 @@ public class PriceFormReplyActivity extends FormReplyActivity<FormReplyContext> 
     // define which form submission should respond to
     @Override
     protected ActivityMatcher<FormReplyContext> matcher() throws EventException {
-        return formReplyContext -> formReplyContext.equals("price");
+        return formReplyContext -> formReplyContext.getFormId().equals("price");
     }
 
     // extract some specific text and

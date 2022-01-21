@@ -21,22 +21,22 @@ public class BotApplication {
     // final SymphonyBdk bdk = new SymphonyBdk(loadFromClasspath("/config.yaml"));
     final SymphonyBdk bdk = new SymphonyBdk(loadFromFile("config.yaml"));
 
-//    // here you subscribe the event listener to the datafeed
-//    bdk.datafeed().subscribe(new MyOrderListener(bdk));
-//
-//    // let's add an activity for the slash command /price
-//    bdk.activities().register(SlashCommand.slash(
-//            "/price",
-//            false,
-//            commandContext -> {
-//              String form = "<form id=\"price\">";
-//              form += "<text-field name=\"ticker\" placeholder=\"Ticker\" /><br />";
-//              form += "<button type=\"action\" name=\"price\">Get Price</button>";
-//              form += "</form>";
-//
-//              bdk.messages().send(commandContext.getStreamId(), form);
-//            }
-//    ));
+    // here you subscribe the event listener to the datafeed
+    bdk.datafeed().subscribe(new MyOrderListener(bdk));
+
+    // let's add an activity for the slash command /price
+    bdk.activities().register(SlashCommand.slash(
+            "/price",
+            false,
+            context -> {
+              String form = "<form id=\"price\">";
+              form += "<text-field name=\"ticker\" placeholder=\"Ticker\" /><br />";
+              form += "<button type=\"action\" name=\"price\">Get Price</button>";
+              form += "</form>";
+
+              bdk.messages().send(context.getStreamId(), form);
+            }
+    ));
 
     // remember to register the custom activity to the Activity Register
     bdk.activities().register(new PriceFormReplyActivity(bdk.messages()));
